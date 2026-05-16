@@ -1,59 +1,115 @@
-import { useState } from "react";
-import Header from "./Header";
+  import { useState, useRef } from "react";
+  import Header from "./Header";
+  import {checkValidateData} from "../utils/validate"
+  import { createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
+  import {auth} from "../utils/firebase"
+  const Login = () => {
 
-const Login = () => {
+      const [isSignInForm, setIsSignForm]=useState(true);
+      const [errorMessage, setErrorMessage]=useState(null)
 
-    const [isSignInForm, setIsSignForm]=useState(true);
+      const email=useRef(null);
+      const password=useRef(null);
+      const name=useRef(null);
+      
+      const handleButtonClick =()=>{
 
-    const toggleSignInForm = ()=>{
-      setIsSignForm(!isSignInForm);
-    }
-  return (
-    <div className="relative">
-      <Header />
+          const msg=checkValidateData(email.current.value,password.current.value,isSignInForm ? "" : name.current.value)
+          setErrorMessage(msg)
 
-      <div>
-        <img
-          className="w-full h-screen object-cover"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/76c5a455-c62c-46d4-8653-3924728113e3/web/IN-en-20260504-TRIFECTA-perspective_596176fe-3b1e-48ec-8a00-a0acb34e68f1_large.jpg"
-          alt="logo"
-        />
-      </div>
-      <form className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-12 bg-black/80 w-3/12 text-white rounded-lg flex flex-col gap-4">
-        
-        <h1 className="text-3xl font-bold mb-6">{isSignInForm? "Sign In": "Sign Up"}</h1>
-        
-        {!isSignInForm && (
+          if (msg) return
+          
+          if(!isSignInForm){
+            //Sign Up Logic
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+            .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            console.log("Sign Up",user)
+              // ...
+          })
+            .catch((error) => {
+              const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorMessage(errorCode+errorMessage )
+            // ..
+          });
+          } else{
+            //Sign in logic
+            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+            .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log("userLoged",user)
+            // ...
+              })
+            .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorMessage(errorCode+errorMessage)
+            });
+          }
+
+      }
+
+      const toggleSignInForm = ()=>{
+        setIsSignForm(!isSignInForm);
+      }
+    return (
+      <div className="relative">
+        <Header />
+
+        <div>
+          <img
+            className="w-full h-screen object-cover"
+            src="https://assets.nflxext.com/ffe/siteui/vlv3/76c5a455-c62c-46d4-8653-3924728113e3/web/IN-en-20260504-TRIFECTA-perspective_596176fe-3b1e-48ec-8a00-a0acb34e68f1_large.jpg"
+            alt="logo"
+          />
+        </div>
+        <form onSubmit={(e)=> e.preventDefault()} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-12 bg-black/80 w-3/12 text-white rounded-lg flex flex-col gap-4">
+          
+          <h1 className="text-3xl font-bold mb-6">{isSignInForm? "Sign In": "Sign Up"}</h1>
+
+          {!isSignInForm && (
+            <input
+            ref={name}
+            type="text"
+            placeholder="Enter Full name"
+            className="p-4 rounded bg-gray-700 outline-none"
+          />
+          )}
           <input
-          type="text"
-          placeholder="Enter Full name"
-          className="p-4 rounded bg-gray-700 outline-none"
-        />
-        )}
-        <input
-          type="text"
-          placeholder="Email or mobile number"
-          className="p-4 rounded bg-gray-700 outline-none"
-        />
+          ref={email}
+            type="email"
+            placeholder="Email Number"
+            className="p-4 rounded bg-gray-700 outline-none"
+          />
 
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="p-4 rounded bg-gray-700 outline-none"
-        />
+          <input
+          ref={password}
+            type="password"
+            placeholder="Password"
+            className="p-4 rounded bg-gray-700 outline-none"
+          />
+  
+          {errorMessage && (
+          <p className="text-red-500 bg-red-100/10 border border-red-500 px-3 py-2 rounded-md text-sm font-medium">
+          {errorMessage}
+        </p>
+          )}
 
-        <button className="bg-red-600 py-3 rounded font-semibold hover:bg-red-700">
-         {isSignInForm? "Sign In": "Sign Up"}
-        </button>
+          <button className="bg-red-600 py-3 rounded font-semibold hover:bg-red-700" onClick={handleButtonClick}>
+          {isSignInForm? "Sign In": "Sign Up"}
+          </button>
+        
+          <p className="text-gray-400 text-center cursor-pointer" onClick={toggleSignInForm}>
+            {isSignInForm? " New to Netflix? Sign Up Now ": "Allready registed ? Sign in Now "}
+          </p>
 
-        <p className="text-gray-400 text-center cursor-pointer" onClick={toggleSignInForm}>
-          {isSignInForm? " New to Netflix? Sign Up Now ": "Allready registed ? Sign in Now "}
-         </p>
+        </form>
+      </div>
+    );
+  };
 
-      </form>
-    </div>
-  );
-};
-
-export default Login;
+  export default Login;
