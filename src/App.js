@@ -1,11 +1,13 @@
 import Body from "./components/Body";
-
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 function App() {
   return (
-    <div className="bg-black min-h-screen">
+    <Provider store={appStore}>
       <Body />
-    </div>
-  );
+
+    </Provider>
+  )
 }
 
 export default App;

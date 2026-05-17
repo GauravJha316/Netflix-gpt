@@ -11,6 +11,11 @@ configured tailwind css
 Firebase Setup
 Deploying our app to production
 -create a signup user account
+Implment Sign In user API
+Created redux store with userSlice
+Implemented Sign out
+-update profile
+
 
 #Features
 login/sign up
