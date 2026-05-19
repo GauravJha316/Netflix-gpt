@@ -21,6 +21,14 @@ Implemented Sign out
 -Add hardcoded values to the constants file
 -Register TMDB API & craete an app and get acces token
 -Get data from TMDB now playing movies list API
+-custom hook for now playing movies
+-craete movieSlice
+-update store with movies Data
+-Planning for ManinConatiner & Secondary Container
+-Fetch Data for Trailer Video
+-Update Store with Trailer Video Data
+-Embedded the youtube video and make it autoplay and mute
+-tailwind css to make it look awesome
 
 
 #Features
