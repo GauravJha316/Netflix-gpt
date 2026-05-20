@@ -6,6 +6,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {addUser} from "../utils/userSlice"
+import { BG_URL } from "../utils/constants";
   const Login = () => {
 
       const [isSignInForm, setIsSignForm]=useState(true);
@@ -84,7 +85,7 @@ import {addUser} from "../utils/userSlice"
         <div>
           <img
             className="w-full h-screen object-cover"
-            src="https://assets.nflxext.com/ffe/siteui/vlv3/76c5a455-c62c-46d4-8653-3924728113e3/web/IN-en-20260504-TRIFECTA-perspective_596176fe-3b1e-48ec-8a00-a0acb34e68f1_large.jpg"
+            src={BG_URL}
             alt="logo"
           />
         </div>
