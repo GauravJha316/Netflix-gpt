@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO, USER_AVATAR } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
  
 const Header = () => {
   const navigate = useNavigate();
@@ -44,14 +45,25 @@ const Header = () => {
   //unscribe when component unmounts
   return ()=> unsubscribe();
 }, []);
+
+  const handleGptSearchClick =()=>{
+    //Toggle GPT Search
+    dispatch(toggleGptSearchView)
+  }
+
   return (
+    
     <div className="absolute w-screen w-full px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
       <img
         className="w-44"
         src={LOGO}
         alt="logo"
       />
-    { user && <div className="flex items-center gap-2">
+    { user && (
+      <div className="flex items-center gap-2">
+        <button className="py-2 px-4 mx-4 bg-purple-800 rounded-lg text-white"
+        onClick={handleGptSearchClick}
+        >GPTS Serach</button>
       <img
         className="w-8 h-8"
         src={user.photoURL || {USER_AVATAR}}
@@ -64,7 +76,7 @@ const Header = () => {
         Sign Out
       </button>
     </div>
-    }
+    )}
     </div>
 
   );

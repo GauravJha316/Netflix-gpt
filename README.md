@@ -29,6 +29,13 @@ Implemented Sign out
 -Update Store with Trailer Video Data
 -Embedded the youtube video and make it autoplay and mute
 -tailwind css to make it look awesome
+-Build SecondaryContainer
+-Build movie list
+-Build movie card
+TMDB Image CDN UrL
+-Made the Browser page amazing with Tailwind css
+-usePopularMovies Custom hook 
+-GPT search Feature
 
 
 #Features
