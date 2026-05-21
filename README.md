@@ -35,7 +35,10 @@ Implemented Sign out
 TMDB Image CDN UrL
 -Made the Browser page amazing with Tailwind css
 -usePopularMovies Custom hook 
--GPT search Feature
+-GPT search Page
+-GPT search Bar
+-Bonus-Mulyi language Featire in our app
+-get APIS
 
 
 #Features
