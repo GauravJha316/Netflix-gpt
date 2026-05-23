@@ -5,13 +5,15 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO, USER_AVATAR } from "../utils/constants";
+import { LOGO, SUPPORTED_LANGUAGES, USER_AVATAR } from "../utils/constants";
 import { toggleGptSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
  
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch(); // MISSING
   const user=useSelector(store => store.user);
+  const showGptSearch=useSelector((store)=>store.gpt.showGptSearch)
   const handleSignOut=()=>{
     signOut(auth)
     .then(()=>{
@@ -48,10 +50,14 @@ const Header = () => {
 
   const handleGptSearchClick =()=>{
     //Toggle GPT Search
-    dispatch(toggleGptSearchView)
+    dispatch(toggleGptSearchView())
   }
 
-  return (
+  const handleLanguageChange=(e)=>{
+    // console.log(e.target.value)
+    dispatch(changeLanguage(e.target.value))
+  }
+return (
     
     <div className="absolute w-screen w-full px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
       <img
@@ -60,13 +66,33 @@ const Header = () => {
         alt="logo"
       />
     { user && (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-4">
+  { showGptSearch && <select onChange={handleLanguageChange}
+    className="px-4 py-2 bg-black/80 text-white text-sm font-semibold 
+               border border-gray-500 rounded-lg shadow-md cursor-pointer
+               hover:bg-black hover:border-red-600
+               focus:outline-none focus:ring-2 focus:ring-red-600
+               transition-all duration-200"
+  >
+    {SUPPORTED_LANGUAGES.map((lang) => (
+      <option
+        key={lang.identifier}
+        value={lang.identifier}
+        className="bg-black text-white"
+      >
+        {lang.name}
+      </option>
+    ))}
+  </select>}
+
         <button className="py-2 px-4 mx-4 bg-purple-800 rounded-lg text-white"
         onClick={handleGptSearchClick}
-        >GPTS Serach</button>
+        >
+         {showGptSearch? "Homepage":"GPT Search"}
+        </button>
       <img
         className="w-8 h-8"
-        src={user.photoURL || {USER_AVATAR}}
+        src={user.photoURL || USER_AVATAR}
         alt="sign-out"
           />
 

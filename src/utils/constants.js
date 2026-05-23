@@ -4,15 +4,22 @@ export const LOGO =
  export const USER_AVATAR=
  "https://avatars.githubusercontent.com/u/136838276?v=4"
 
-export const API_OPTIONS = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMGNjMzljMTFjZTkzOTJiMjU3MWIyYjAzZmU4Mzk2NCIsIm5iZiI6MTc3ODk5NDQxNC42MTY5OTk5LCJzdWIiOiI2YTA5NGNlZWZhNzIzZGE0ZmFlZTQwMDUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.EfesQS1BaRjEq0hNlwcZBzISconUn5avi4NzcQqnaBY",
-  },
-};
+
 
 export const IMG_CDN_URL= "https://image.tmdb.org/t/p/w500"
 
 export const BG_URL=
   "https://assets.nflxext.com/ffe/siteui/vlv3/76c5a455-c62c-46d4-8653-3924728113e3/web/IN-en-20260504-TRIFECTA-perspective_596176fe-3b1e-48ec-8a00-a0acb34e68f1_large.jpg";
+
+
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", name: "English" },
+  { identifier: "hindi", name: "Hindi" },
+  { identifier: "spanish", name: "Spanish" },
+];
+
+
+
+
+
+

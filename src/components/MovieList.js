@@ -1,20 +1,23 @@
 import MovieCard from "./MovieCard";
 
-const MovieList=({title, movies})=>{
-    if (!movies) return null;
-    
-    return (
-          <div className="px-6">
-            <h1 className="text-2xl font-bold  text-white py-4">{title}</h1>
+const MovieList = ({ title, movies }) => {
+  if (!movies) return null;
 
-            <div className="flex overflow-x-scroll no-scrollbar">
-               
-                <div className="flex gap-4">
-                    {movies?.map((movies)=><MovieCard key={movies.id} posterPath={movies.poster_path} />)}
-                </div>
-            </div>
+  return (
+    <div className="mb-8">
+      <h1 className="mb-3 text-lg font-bold text-white sm:text-xl md:text-2xl">
+        {title}
+      </h1>
+
+      <div className="overflow-x-auto overflow-y-visible no-scrollbar pb-6">
+        <div className="flex gap-3 sm:gap-4">
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} posterPath={movie.poster_path} />
+          ))}
         </div>
-    )
-}
+      </div>
+    </div>
+  );
+};
 
 export default MovieList;

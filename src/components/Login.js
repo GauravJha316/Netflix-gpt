@@ -78,61 +78,61 @@ import { BG_URL } from "../utils/constants";
       const toggleSignInForm = ()=>{
         setIsSignForm(!isSignInForm);
       }
-    return (
-      <div className="relative">
-        <Header />
+      return (
+  <div className="relative">
+    <Header />
 
-        <div>
-          <img
-            className="w-full h-screen object-cover"
-            src={BG_URL}
-            alt="logo"
-          />
-        </div>
-        <form onSubmit={(e)=> e.preventDefault()} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-12 bg-black/80 w-3/12 text-white rounded-lg flex flex-col gap-4">
-          
-          <h1 className="text-3xl font-bold mb-6">{isSignInForm? "Sign In": "Sign Up"}</h1>
+    <div>
+      <img
+        className="w-full h-screen object-cover"
+        src={BG_URL}
+        alt="logo"
+      />
+    </div>
+    <form onSubmit={(e)=> e.preventDefault()} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-12 bg-black/80 w-3/12 text-white rounded-lg flex flex-col gap-4">
+      
+      <h1 className="text-3xl font-bold mb-6">{isSignInForm? "Sign In": "Sign Up"}</h1>
 
-          {!isSignInForm && (
-            <input
-            ref={name}
-            type="text"
-            placeholder="Enter Full name"
-            className="p-4 rounded bg-gray-700 outline-none"
-          />
-          )}
-          <input
-          ref={email}
-            type="email"
-            placeholder="Email Number"
-            className="p-4 rounded bg-gray-700 outline-none"
-          />
+      {!isSignInForm && (
+        <input
+        ref={name}
+        type="text"
+        placeholder="Enter Full name"
+        className="p-4 rounded bg-gray-700 outline-none"
+      />
+      )}
+      <input
+      ref={email}
+        type="email"
+        placeholder="Email Number"
+        className="p-4 rounded bg-gray-700 outline-none"
+      />
 
 
-          <input
-          ref={password}
-            type="password"
-            placeholder="Password"
-            className="p-4 rounded bg-gray-700 outline-none"
-          />
-  
-          {errorMessage && (
-          <p className="text-red-500 bg-red-100/10 border border-red-500 px-3 py-2 rounded-md text-sm font-medium">
-          {errorMessage}
-        </p>
-          )}
+      <input
+      ref={password}
+        type="password"
+        placeholder="Password"
+        className="p-4 rounded bg-gray-700 outline-none"
+      />
 
-          <button className="bg-red-600 py-3 rounded font-semibold hover:bg-red-700" onClick={handleButtonClick}>
-          {isSignInForm? "Sign In": "Sign Up"}
-          </button>
-        
-          <p className="text-gray-400 text-center cursor-pointer" onClick={toggleSignInForm}>
-            {isSignInForm? " New to Netflix? Sign Up Now ": "Allready registed ? Sign in Now "}
-          </p>
+      {errorMessage && (
+      <p className="text-red-500 bg-red-100/10 border border-red-500 px-3 py-2 rounded-md text-sm font-medium">
+      {errorMessage}
+    </p>
+      )}
 
-        </form>
-      </div>
-    );
+      <button className="bg-red-600 py-3 rounded font-semibold hover:bg-red-700" onClick={handleButtonClick}>
+      {isSignInForm? "Sign In": "Sign Up"}
+      </button>
+    
+      <p className="text-gray-400 text-center cursor-pointer" onClick={toggleSignInForm}>
+        {isSignInForm? " New to Netflix? Sign Up Now ": "Allready registed ? Sign in Now "}
+      </p>
+
+    </form>
+  </div>
+);
   };
 
   export default Login;

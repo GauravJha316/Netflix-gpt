@@ -38,7 +38,17 @@ TMDB Image CDN UrL
 -GPT search Page
 -GPT search Bar
 -Bonus-Mulyi language Featire in our app
--get APIS
+-GPT Search Open API Key
+--GPT Search  API Call
+-fetch gpt movies  suggestion form tmdb
+-created gptSlice added data
+-Resused movie list component
+-Memoization
+-Added .env file
+-added .env file to git ignore
+-Made our site Responsivness
+
+
 
 
 #Features
