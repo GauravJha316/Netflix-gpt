@@ -13,9 +13,10 @@ export const API_OPTIONS = {
   headers: {
     accept: "application/json",
     // Authorization:"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMGNjMzljMTFjZTkzOTJiMjU3MWIyYjAzZmU4Mzk2NCIsIm5iZiI6MTc3ODk5NDQxNC42MTY5OTk5LCJzdWIiOiI2YTA5NGNlZWZhNzIzZGE0ZmFlZTQwMDUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.EfesQS1BaRjEq0hNlwcZBzISconUn5avi4NzcQqnaBY",
-    Authorization: "Bearer"+import.meta.env.REACT_APP_TMDB_KEY,
+    Authorization: "Bearer"+import.meta.env.VITE_TMDB_KEY,
   },
 };
+export const gemini_key=import.meta.env.VITE_GEMINI_API_KEY;
 
 export const IMG_CDN_URL= "https://image.tmdb.org/t/p/w500"
 
@@ -29,7 +30,7 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "spanish", name: "Spanish" },
 ];
 
-export const gemini_key="AIzaSyDHTyojCkVuIWISo6dFswTQZh5PwS1icKc"
+// export const gemini_key="AIzaSyDHTyojCkVuIWISo6dFswTQZh5PwS1icKc"
 
 
 
